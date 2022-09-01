@@ -1,13 +1,20 @@
+# hidden files
+.*
+!.git*
+!.editorconfig
+!.nojekyll
+!.travis.yml
+!.husky
+!.commitlintrc.json
+!.versionrc.json
+
+# bundler cache
 _site
-_posts/_draft
-_posts/_archive
-_archive
+vendor
+
+# rubygem
+*.gem
+
+# npm dependencies
 node_modules
-.vscode
-*.log
-*.lock
-*.sh
-.DS_Store
-.jekyll-cache
-*/.DS_Store
-*/*/.DS_Store
+package-lock.json
