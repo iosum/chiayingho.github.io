@@ -1,0 +1,33 @@
+I"�<p>從 <code class="language-plaintext highlighter-rouge">string</code> data type 轉成 <code class="language-plaintext highlighter-rouge">int</code> 中間出的變化會非常多，有可能 input string 是空字串， input string 也有可能是 backctick…等，一堆很奇怪的符號，這邊我使用我自己在專案中有使用的，並不保證大家都能夠判斷正確。</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">parseFloat</code>(input string)</p>
+  </li>
+  <li>
+    <p>檢查是否為 <code class="language-plaintext highlighter-rouge">NaN</code></p>
+
+    <ul>
+      <li>
+        <p>如果是，則不是 Numeric Value</p>
+      </li>
+      <li>
+        <p>反之，則是 Numeric Value</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">isNumeric</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">str</span> <span class="o">!=</span> <span class="dl">"</span><span class="s2">string</span><span class="dl">"</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// we only process strings!</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">!</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="c1">// use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...</span>
+    <span class="o">!</span><span class="nb">isNaN</span><span class="p">(</span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">str</span><span class="p">))</span>
+  <span class="p">);</span> <span class="c1">// ...and ensure strings of whitespace fail</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>參考資料: <a href="https://stackoverflow.com/questions/175739/how-can-i-check-if-a-string-is-a-valid-number">How can I check if a string is a valid number?</a></p>
+:ET

@@ -1,0 +1,27 @@
+I"�	<p><a href="https://jsfiddle.net/iosum/tsc069m1/3/">JSFiddle 範例</a></p>
+
+<p>使用 <code class="language-plaintext highlighter-rouge">v-on:keyup.enter</code>=<code class="language-plaintext highlighter-rouge">'function name'</code> 綁定 input 或是 form。</p>
+
+<p>起初寫的時候，以為 <code class="language-plaintext highlighter-rouge">v-on:keyup.enter</code> 要綁在 button 上，但是實際上其實是 form (或是其他的 input)， 以 form 為主體， trigger Enter 鍵之後，呼叫 login function，即可執行成功。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;form</span> <span class="na">v-on:keyup.enter=</span><span class="s">"login"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"button"</span> <span class="err">@</span><span class="na">click=</span><span class="s">"login"</span><span class="nt">&gt;</span>Login<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;/form&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+  <span class="na">el</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#app</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nx">login</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">CLICKED!</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>參考資料: <a href="https://stackoverflow.com/questions/46639549/on-key-press-of-enter-click-a-button-in-vuejs">On key press of Enter, click a button in vuejs</a></p>
+:ET

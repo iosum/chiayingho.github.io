@@ -1,0 +1,2 @@
+I"�<p>從 <code class="language-plaintext highlighter-rouge">string</code> data type 轉成 <code class="language-plaintext highlighter-rouge">int</code> 中間出的變化會非常多，有可能 input string 是空字串， input string 也有可能是 backctick…等，一堆很奇怪的符號，這邊我使用我自己在專案中有使用的，並不保證大家都能夠判斷正確。</p>
+:ET

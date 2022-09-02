@@ -1,0 +1,28 @@
+I"v<p>disabled input 是無法將 value 傳至 controller，但是我們仍需要用到 value，此時需要怎麼做?</p>
+
+<p>解決辦法：</p>
+
+<ol>
+  <li>
+    <p>將 disabled input 塞進一個 id 或是 class。</p>
+  </li>
+  <li>
+    <p>在 submit form 的時候，使用 jQuery 的 <a href="https://api.jquery.com/removeattr/">removeAttr</a> method，將 disabed 這一個屬性拿掉，這樣就可以在 controller 拿到 value 囉。</p>
+  </li>
+</ol>
+
+<p>以下為 pseudo code，請參考。</p>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">@Html</span><span class="p">.</span><span class="nf">CheckBoxFor</span><span class="p">(</span><span class="n">m</span> <span class="p">=&gt;</span> <span class="n">m</span><span class="p">.</span><span class="n">isUsed</span><span class="p">,</span> <span class="k">new</span> <span class="p">{</span> <span class="n">@disabled</span><span class="p">=</span><span class="s">"disabled"</span><span class="p">,</span> <span class="n">@class</span><span class="p">=</span><span class="s">"disabledCheckbox"</span><span class="p">}</span> <span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#TestForm</span><span class="dl">"</span><span class="p">).</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#CheckBoxId</span><span class="dl">"</span><span class="p">).</span><span class="nx">removeAttr</span><span class="p">(</span><span class="dl">"</span><span class="s2">disabled</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>參考資料：
+<a href="https://stackoverflow.com/questions/2700696/how-do-i-submit-disabled-input-in-asp-net-mvc/2724483">How do I submit disabled input in ASP.NET MVC?</a></p>
+:ET
