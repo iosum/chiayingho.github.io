@@ -3,7 +3,7 @@ layout: post
 title: 設置 Git SSH key - Windows11 版本 | Git
 author: Casey
 date: 2022-08-27 23:11:00 +08:00
-categories: Blogging, Tutorials
+categories: Blogging Tutorials
 tags: javascript snippets
 ---
 
