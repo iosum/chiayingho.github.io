@@ -3,8 +3,8 @@ layout: post
 title: 點擊 Enter 之後，執行某一支 Function | Vue.js
 author: Casey
 date: 2022-08-31 11:00:00 +08:00
-categories: Blogging
-tags: vue.js snippets
+categories: Snippets
+tags: vue.js
 ---
 
 [JSFiddle 範例](https://jsfiddle.net/iosum/tsc069m1/3/)

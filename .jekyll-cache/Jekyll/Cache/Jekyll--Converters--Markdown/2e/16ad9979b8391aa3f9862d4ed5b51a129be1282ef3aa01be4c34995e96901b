@@ -1,0 +1,44 @@
+I"�<p>使用 <code class="language-plaintext highlighter-rouge">Array.prototype.some()</code> 和 <code class="language-plaintext highlighter-rouge">Array.prototype.filter()</code>，找出 2 個 array 至少有一個相同的元素。</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">some()</code> 接收到的參數是一組公式，如果 <code class="language-plaintext highlighter-rouge">array</code> 的某一個元素有符合此公式，立即回傳 <code class="language-plaintext highlighter-rouge">true</code>，如遍歷整個 <code class="language-plaintext highlighter-rouge">array</code> 都找不到則回傳 <code class="language-plaintext highlighter-rouge">false</code>。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">filter()</code> 接收到的參數也是一組公式，不過跟 <code class="language-plaintext highlighter-rouge">some()</code> 不一樣的地方是 <code class="language-plaintext highlighter-rouge">filter()</code> 經過公式的運算後，會回傳一個新的陣列。</p>
+  </li>
+</ul>
+
+<p>範例：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">result1</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Sandra</span><span class="dl">"</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">,</span> <span class="na">username</span><span class="p">:</span> <span class="dl">"</span><span class="s2">sandra</span><span class="dl">"</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">admin</span><span class="dl">"</span><span class="p">,</span> <span class="na">username</span><span class="p">:</span> <span class="dl">"</span><span class="s2">johnny2</span><span class="dl">"</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Peter</span><span class="dl">"</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">,</span> <span class="na">username</span><span class="p">:</span> <span class="dl">"</span><span class="s2">pete</span><span class="dl">"</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Bobby</span><span class="dl">"</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">,</span> <span class="na">username</span><span class="p">:</span> <span class="dl">"</span><span class="s2">be_bob</span><span class="dl">"</span> <span class="p">},</span>
+<span class="p">];</span>
+
+<span class="kd">var</span> <span class="nx">result2</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span> <span class="na">email</span><span class="p">:</span> <span class="dl">"</span><span class="s2">johnny@example.com</span><span class="dl">"</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Bobby</span><span class="dl">"</span><span class="p">,</span> <span class="na">email</span><span class="p">:</span> <span class="dl">"</span><span class="s2">bobby@example.com</span><span class="dl">"</span> <span class="p">},</span>
+<span class="p">];</span>
+
+<span class="c1">// 找出 result1 和 result2 相同的 id 之後</span>
+<span class="c1">// 回傳一個新 array</span>
+<span class="nx">result1</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">o1</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">result2</span><span class="p">.</span><span class="nx">some</span><span class="p">((</span><span class="nx">o2</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">o1</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="nx">o2</span><span class="p">.</span><span class="nx">id</span><span class="p">));</span>
+
+<span class="c1">// 找出 result1 和 result2 不同的 id 之後</span>
+<span class="c1">// 回傳一個新 array</span>
+<span class="nx">result1</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">o1</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="nx">result2</span><span class="p">.</span><span class="nx">some</span><span class="p">((</span><span class="nx">o2</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">o1</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="nx">o2</span><span class="p">.</span><span class="nx">id</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p>結果圖：
+<img src="https://i.imgur.com/eJbzYgV.png" alt="Imgur" /></p>
+
+<p><img src="https://i.imgur.com/yNIjuzY.png" alt="Imgur" /></p>
+
+<hr />
+
+<p>參考資料：
+<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/some">MDN DOCS - Array.prototype.some()</a></p>
+:ET

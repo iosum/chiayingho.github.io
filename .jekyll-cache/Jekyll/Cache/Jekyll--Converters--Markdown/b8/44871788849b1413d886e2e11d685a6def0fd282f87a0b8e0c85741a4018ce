@@ -1,0 +1,8 @@
+I"�<p>錯誤：</p>
+
+<p>DataFlow:錯誤: 寫入 Table_A.輸入[OLE DB 目的地輸入] 上的 寫入 Table_A 輸入[OLE DB 目的地輸入].資料行[Column_A] 發生錯誤。傳回的資料行狀態是: “值違反資料行的完整性條件約束。”。</p>
+
+<p>解決方法：</p>
+
+<p><code class="language-plaintext highlighter-rouge">Table_A</code>.<code class="language-plaintext highlighter-rouge">Column_A</code> 不接受 NULL，但是傳入的資料是 NULL</p>
+:ET

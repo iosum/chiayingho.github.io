@@ -3,8 +3,8 @@ layout: post
 title: Disabled Input 傳至 Controller | JavaScript
 author: Casey
 date: 2022-08-31 11:00:00 +08:00
-categories: Blogging
-tags: javascript snippets
+categories: Snippets
+tags: javascript
 ---
 
 disabled input 是無法將 value 傳至 controller，但是我們仍需要用到 value，此時需要怎麼做?
