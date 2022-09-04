@@ -4,7 +4,7 @@ title: var vs let - Part 1 | JavaScript
 author: Casey
 date: 2022-09-01 16:20:00 +08:00
 categories: Blogging
-tags: javaScript
+tags: javascript
 ---
 
 自從 JS 在 2015 年推出大改版後，相信大家都看過非常多 `var`，`let`，`const` 的文章，雖然現已 2022，但有許多 legacy project 還是使用 var 來定義變數，就讓我們再了解一次 `var` 和 `let` 有何不同吧。
