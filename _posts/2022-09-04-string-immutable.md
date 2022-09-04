@@ -20,16 +20,17 @@ tags: javascript
 - 將 `student` assign 給 `Jesse`
 - 再將 `student` 的第 0 號位置變成 A
 
-看到這心想應該是沒什麼問題吧，結果拿到 console 一跑，會發現 `student` 怎麼還是 `Jesse`?
-
 ```js
+// 先設定一個變數叫做 student 並且 value 設為 Jesse
 let student = "Jesse";
-console.log(student); // Jesse
+console.log(student);
 
-// 重新 assign student 變數的 Jesse
+// 將第 0 號位置重新assign，從 J 變成 A
 student[0] = "A";
-console.log(student); // Jesse
+console.log(student);
 ```
+
+看到這心想應該是沒什麼問題吧，結果拿到 console 一跑，會發現 `student` 怎麼還是 `Jesse`?
 
 ![Imgur](https://i.imgur.com/DiLTKFf.png)
 
@@ -38,6 +39,15 @@ console.log(student); // Jesse
 但我們還是很想讓 `Jesse` 變成 `Aesse` 該怎麼做?
 
 其實只要 reassign student 這一個變數即可。
+
+```js
+let student = "Jesse";
+console.log(student); // Jesse
+
+// 重新 assign 一整個 student 變數
+student = "Aesse";
+console.log(student); // Aesse
+```
 
 ![Imgur](https://i.imgur.com/wDljPnr.png)
 
