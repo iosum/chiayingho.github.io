@@ -45,7 +45,9 @@ html {
       }
     }
   }
-
+  .contact {
+    margin-top: 0.5rem;
+  }
   &[data-scroll-status="down"] {
     header.site-header {
       top: -$header-height;
