@@ -44,7 +44,7 @@ copyright: "© 2022 Casey Ho"
 
 #description: >- # this means to ignore newlines until "baseurl:"
 
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "https://caseyho.dev/" # the subpath of your site, e.g. /blog
 url: "https://iosum.github.io" # the base hostname & protocol for your site, e.g. https://example.com
 favicon: "" # the favicon for your site
 
