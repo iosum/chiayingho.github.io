@@ -100,8 +100,8 @@ html {
 
   .site-brand-inner {
     @include relative-font-size(1.125);
-    font-weight: $base-font-weight;
-    letter-spacing: -1px;
+    font-weight: 600;
+    letter-spacing: 2px;
     transition: 0.1s filter color;
 
     &,
@@ -137,6 +137,7 @@ html {
     color: $header-text-color;
     transition: 0.1s ease-in-out;
     padding: 10px;
+    letter-spacing: 2px;
 
     // Gaps between nav items, but not on the last one
     &:not(:last-child) {
@@ -216,6 +217,10 @@ html {
     &:hover {
       color: lighten($a-color, 10%);
     }
+  }
+
+  .contact-github {
+    margin-right: 10px;
   }
 }
 
