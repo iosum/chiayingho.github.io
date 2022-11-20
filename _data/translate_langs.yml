@@ -1,10 +1,10 @@
 # Translate languages
 # langs refer to https://cloud.google.com/translate/docs/languages
 
-- lang: en
-  img: https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png
-  text: English
+# - lang: en
+#   img: https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png
+#   text: English
 
-- lang: zh-TW
-  img: https://cdn.countryflags.com/thumbs/taiwan/flag-400.png
-  text: Chinese(Traditional)
+# - lang: zh-TW
+#   img: https://cdn.countryflags.com/thumbs/taiwan/flag-400.png
+#   text: Chinese(Traditional)
