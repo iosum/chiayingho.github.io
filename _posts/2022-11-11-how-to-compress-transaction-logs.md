@@ -17,7 +17,7 @@ tags: sql
 - 使用 TSQL 
 
 
-### SSMS 
+### TSQL 
 
 在資料庫按右鍵 > 屬性 > 復原模式
 
