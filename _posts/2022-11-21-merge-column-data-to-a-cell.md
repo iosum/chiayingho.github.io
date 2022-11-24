@@ -93,6 +93,6 @@ WHERE Reviewer IS NOT NULL
 
 ## 參考資料
 
-![[SQL]將多筆資料合併為一筆顯示(FOR XML PATH)](https://dotblogs.com.tw/kevinya/2012/06/01/72553)
+[[SQL]將多筆資料合併為一筆顯示(FOR XML PATH)](https://dotblogs.com.tw/kevinya/2012/06/01/72553)
 
-![[食譜好菜] SQL Server 使用「FOR XML」語法做欄位合併](https://dotblogs.com.tw/supershowwei/2016/01/26/145353)
+[[食譜好菜] SQL Server 使用「FOR XML」語法做欄位合併](https://dotblogs.com.tw/supershowwei/2016/01/26/145353)
