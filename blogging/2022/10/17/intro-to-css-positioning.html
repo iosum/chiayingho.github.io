@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>CSS positioning 介紹 css | Casey’s Blog</title>
+<meta name="generator" content="Jekyll v4.3.1">
+<meta property="og:title" content="CSS positioning 介紹 css">
+<meta name="author" content="Casey">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="介紹">
+<meta property="og:description" content="介紹">
+<link rel="canonical" href="https://iosum.github.io//jekyll-theme-yat/blogging/2022/10/17/intro-to-css-positioning.html">
+<meta property="og:url" content="https://iosum.github.io//jekyll-theme-yat/blogging/2022/10/17/intro-to-css-positioning.html">
+<meta property="og:site_name" content="Casey’s Blog">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-10-17T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="CSS positioning 介紹 css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Casey"},"dateModified":"2022-10-17T00:00:00+00:00","datePublished":"2022-10-17T00:00:00+00:00","description":"介紹","headline":"CSS positioning 介紹 css","mainEntityOfPage":{"@type":"WebPage","@id":"https://iosum.github.io//jekyll-theme-yat/blogging/2022/10/17/intro-to-css-positioning.html"},"url":"https://iosum.github.io//jekyll-theme-yat/blogging/2022/10/17/intro-to-css-positioning.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="icon" href="">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/jekyll-theme-yat/assets/css/main.css">
+  <script src="/jekyll-theme-yat/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://iosum.github.io//jekyll-theme-yat/feed.xml" title="Casey's Blog">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// Init highlight js
+document.addEventListener('DOMContentLoaded', function(event) {
+  var els = document.querySelectorAll('pre code')
+
+  function addLangData(block) {
+    var outer = block.parentElement.parentElement.parentElement;
+    var lang = block.getAttribute('data-lang');
+    for (var i = 0; i < outer.classList.length; i++) {
+      var cls = outer.classList[i];
+      if (cls.startsWith('language-')) {
+        lang = cls;
+        break;
+      }
+    }
+    if (!lang) {
+      cls = block.getAttribute('class');
+      lang = cls ? cls.replace('hljs ', '') : '';
+    }
+    if (lang.startsWith('language-')) {
+      lang = lang.substr(9);
+    }
+    block.setAttribute('class', 'hljs ' + lang);
+    block.parentNode.setAttribute('data-lang', lang);
+  }
+
+  function addBadge(block) {
+    var enabled = ('true' || 'true').toLowerCase();
+    if (enabled == 'true') {
+      var pre = block.parentElement;
+      pre.classList.add('badge');
+    }
+  }
+
+  function handle(block) {
+    addLangData(block);
+    addBadge(block)
+    hljs.highlightBlock(block);
+  }
+
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    handle(el);
+  }
+});
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  code > table pre::before {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header " role="banner">
+  <div class="wrapper">
+    <div class="site-header-inner">
+<span class="site-brand"><a class="site-brand-inner" rel="author" href="/jekyll-theme-yat/">
+  <img class="site-favicon" title="Casey's Blog" src="" onerror="this.style.display='none'">
+  Casey's Blog
+</a>
+</span><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger">
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewbox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+<a class="page-link" href="/jekyll-theme-yat/about.html">ABOUT</a><a class="page-link" href="/jekyll-theme-yat/archives.html">ARCHIVES</a><a class="page-link" href="/jekyll-theme-yat/categories.html">CATEGORIES</a><a class="page-link" href="/jekyll-theme-yat/">HOME</a><a class="page-link" href="/jekyll-theme-yat/tags.html">TAGS</a>
+
+
+
+
+</div>
+      </nav>
+</div>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('auto' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<div id="click-to-top" class="click-to-top">
+  <i class="fa fa-arrow-up"></i>
+</div>
+<script>
+  (function () {
+    const clickToTop = document.getElementById('click-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        clickToTop.classList.add('show')
+      }else {
+        clickToTop.classList.remove('show')
+      }
+    });
+    clickToTop.addEventListener('click', () => {
+      window.smoothScrollTo(0);
+    });
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">CSS positioning 介紹 | css</h1>
+  <h2 class="post-subtitle"></h2>
+
+  <p class="post-meta">
+    <time class="dt-published" datetime="2022-10-17T00:00:00+00:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Oct 17, 2022
+    </time>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 6 mins</span>
+  </p>
+<div class="post-tags"><a class="post-tag" href="/jekyll-theme-yat/tags.html#css">#css</a></div></header>
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <h2 id="介紹">介紹</h2>
+
+<p><code class="language-plaintext highlighter-rouge">position</code> 屬性用於 HTML 元素的<strong>定位方法</strong>，再搭配使用 <code class="language-plaintext highlighter-rouge">top</code>、<code class="language-plaintext highlighter-rouge">bottom</code>、<code class="language-plaintext highlighter-rouge">left</code> 和 <code class="language-plaintext highlighter-rouge">right</code> 屬性定位。</p>
+
+<p>但是，除非首先設置了 <code class="language-plaintext highlighter-rouge">position</code> 屬性，否則 <code class="language-plaintext highlighter-rouge">top</code>、<code class="language-plaintext highlighter-rouge">bottom</code>、<code class="language-plaintext highlighter-rouge">left</code> 和 <code class="language-plaintext highlighter-rouge">right</code> 屬性將不起作用。</p>
+
+<p>以下為 <code class="language-plaintext highlighter-rouge">position</code> 屬性值：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">position: static</code></li>
+  <li><code class="language-plaintext highlighter-rouge">position: relative</code></li>
+  <li><code class="language-plaintext highlighter-rouge">position: fixed</code></li>
+  <li><code class="language-plaintext highlighter-rouge">position: absolute</code></li>
+  <li><code class="language-plaintext highlighter-rouge">position: sticky</code></li>
+</ul>
+
+<h2 id="static-positioning">Static Positioning</h2>
+
+<p><code class="language-plaintext highlighter-rouge">position: static</code> 是 HTML 元素的預設值。</p>
+
+<p>任何套用 <code class="language-plaintext highlighter-rouge">position: static;</code> 的元素「不會被特別定位」在頁面上特定位置，而是照著瀏覽器預設的設定自動排版在頁面上。</p>
+
+<p><code class="language-plaintext highlighter-rouge">position: static;</code> 的元素不受 <code class="language-plaintext highlighter-rouge">top</code> 、 <code class="language-plaintext highlighter-rouge">right</code> 、 <code class="language-plaintext highlighter-rouge">bottom</code> 和 <code class="language-plaintext highlighter-rouge">left</code> 屬性影響。</p>
+
+<h3 id="範例">範例</h3>
+
+<p><a href="https://codepen.io/iosum/pen/JjvVXyx">CodePen</a></p>
+
+<p>可以看到加上了 <code class="language-plaintext highlighter-rouge">position: static;</code>之後，元素依然在相同的位置。</p>
+
+<p><img src="https://i.imgur.com/pRQ92d4.png" alt="Imgur"></p>
+
+<h2 id="relative-positioning">Relative Positioning</h2>
+
+<p><code class="language-plaintext highlighter-rouge">position: relative;</code> 的元素和 <code class="language-plaintext highlighter-rouge">position: static</code>的元素 十分類似，<code class="language-plaintext highlighter-rouge">position: relative;</code>的元素可以讓開發者修改元素的最終位置。</p>
+
+<p><code class="language-plaintext highlighter-rouge">position: relative;</code> 的元素必須加上<code class="language-plaintext highlighter-rouge">top</code> 、 <code class="language-plaintext highlighter-rouge">right</code> 、 <code class="language-plaintext highlighter-rouge">bottom</code> 和 <code class="language-plaintext highlighter-rouge">left</code> 屬性，才能修改元素的最終位置，使元素相對於<strong>原本元素該出現的位置</strong>進行定位。</p>
+
+<p>而不管這些「相對定位」過的元素如何在頁面上移動位置或增加了多少空間，都不會影響到原本其他元素所在的位置。</p>
+
+<h3 id="範例-1">範例</h3>
+
+<p><a href="https://codepen.io/iosum/pen/KKRNgOy?editors=1100">CodePen</a></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.relative</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
+  <span class="nl">left</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>可以看到加了 <code class="language-plaintext highlighter-rouge">.relative</code> 的 <code class="language-plaintext highlighter-rouge">.box2</code>，<code class="language-plaintext highlighter-rouge">.box2</code> 會<strong>相對於原本的位置</strong>向下移動 20px，向右移動 10px，表示離上方 20px，左邊 10px。</p>
+
+<p>也可以看到 <code class="language-plaintext highlighter-rouge">.box2</code> 已經疊在 <code class="language-plaintext highlighter-rouge">.box3</code> 上方，表示 <code class="language-plaintext highlighter-rouge">.box3</code> 並沒有因為 <code class="language-plaintext highlighter-rouge">.box2</code>有移動跟著移動。</p>
+
+<p><img src="https://i.imgur.com/i3N3QRZ.png" alt="Imgur"></p>
+
+<p>如果把 <code class="language-plaintext highlighter-rouge">.relative</code> 拿掉，表示沒有特別定位，<code class="language-plaintext highlighter-rouge">.box2</code>元素就會回到原本的位置。</p>
+
+<p><img src="https://i.imgur.com/ZTTKirX.png" alt="Imgur"></p>
+
+<h2 id="fixed-positioning">Fixed Positioning</h2>
+
+<p>設定為 <code class="language-plaintext highlighter-rouge">position: fixed</code> 的元素是相對於<strong>視窗</strong>進行定位，即使往下 scroll 或是往上 scroll，元素都同一位置，不會隨著滾動而有所改變。</p>
+
+<p>可以搭配 <code class="language-plaintext highlighter-rouge">top</code> 、 <code class="language-plaintext highlighter-rouge">right</code> 、 <code class="language-plaintext highlighter-rouge">bottom</code> 和 <code class="language-plaintext highlighter-rouge">left</code> 屬性將此元素定位在瀏覽器的某一個地方。</p>
+
+<h3 id="範例-2">範例</h3>
+
+<p><a href="https://codepen.io/iosum/pen/YzLpLWJ?editors=1100">CodePen</a></p>
+
+<p>可以看到範例，即便我是把要固定的元素放在文字裡面，我還是會相對於瀏覽器視窗做定位。</p>
+
+<p><img src="https://i.imgur.com/cVcVIpz.gif" alt="Imgur"></p>
+
+<h2 id="absolute-positioning">Absolute Positioning</h2>
+
+<p>需要注意以下 3 件事情：</p>
+
+<ul>
+  <li>剩下的元素向上移動</li>
+  <li>寬度變化</li>
+  <li>相對於哪一個元素定位</li>
+</ul>
+
+<h3 id="注意事項">注意事項</h3>
+
+<h4 id="剩下的元素向上移動">剩下的元素向上移動</h4>
+
+<p>設定為 <code class="language-plaintext highlighter-rouge">position: absolute;</code> 的元素，會完全跳脫該頁面，會感覺像浮在頁面之上。</p>
+
+<p>所以，設定為 <code class="language-plaintext highlighter-rouge">position: absolute;</code> 的元素原本所占用的空間將會消失，在 <code class="language-plaintext highlighter-rouge">position: absolute;</code> 以後的元素將會往上移動。</p>
+
+<h4 id="寬度變化">寬度變化</h4>
+
+<p>我們一開始沒有設元素的寬度，所以寬度會完全撐開至父元素的邊界，這是 block 元素的特性。</p>
+
+<p>當設定為 <code class="language-plaintext highlighter-rouge">position: absolute;</code> 的元素跳脫該頁面後，也意味著，它脫離了父元素的範圍，寬度就以內容為基準。</p>
+
+<h4 id="相對於哪一個元素定位">相對於哪一個元素定位</h4>
+
+<p>當元素的 position 設定 <code class="language-plaintext highlighter-rouge">position: absolute </code>後，
+該元素就會往外層的元素找是否有 <code class="language-plaintext highlighter-rouge">position:relative</code>、<code class="language-plaintext highlighter-rouge">position: absolute</code> 、<code class="language-plaintext highlighter-rouge">position: fixed</code> 和 <code class="language-plaintext highlighter-rouge">position: inherit</code> (若繼承的是前面 3 個之一)的元素，若是都沒有，就會以該網頁頁面(<code class="language-plaintext highlighter-rouge">&lt;body&gt;</code>)的左上角為定位點。</p>
+
+<p>若沒有設定任何 <code class="language-plaintext highlighter-rouge">top</code> 、 <code class="language-plaintext highlighter-rouge">right</code> 、 <code class="language-plaintext highlighter-rouge">bottom</code> 和 <code class="language-plaintext highlighter-rouge">left</code> 屬性，設定為 <code class="language-plaintext highlighter-rouge">position: absolute;</code> 的元素的位置將遵照原本的位置(<code class="language-plaintext highlighter-rouge">position: static</code>)，但依舊會跳脫原本頁面。</p>
+
+<h3 id="範例-3">範例</h3>
+
+<p><a href="https://codepen.io/iosum/pen/NWMdxqQ?editors=1100">CodePen</a></p>
+
+<h4 id="原圖">原圖</h4>
+
+<p>下圖為原本元素的定位。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"wrapper "</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box1 "</span><span class="nt">&gt;</span>
+    box 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero totam
+    eaque mollitia explicabo cum aut sint ut nam enim deserunt!
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box2"</span><span class="nt">&gt;</span>box 2 Lorem ipsum dolor sit amet<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box3"</span><span class="nt">&gt;</span>
+    box 3 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    Voluptatibus, quis. Lorem ipsum dolor sit, amet consectetur adipisicing
+    elit. Cum voluptates veniam fuga, cupiditate ipsam laboriosam!
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.wrapper</span> <span class="p">{</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">5px</span> <span class="nb">solid</span> <span class="m">#046865</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.box1</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#e53d00</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.box2</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#ffe900</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.box3</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#21a0a0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="https://i.imgur.com/h4EopGQ.png" alt="Imgur"></p>
+
+<hr>
+
+<h4 id="範例-1---在-box-2-加上-position-absolute">範例 1 - 在 box 2 加上 <code class="language-plaintext highlighter-rouge">position: absolute;</code>
+</h4>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"wrapper "</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box1 "</span><span class="nt">&gt;</span>
+    box 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero totam
+    eaque mollitia explicabo cum aut sint ut nam enim deserunt!
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box2 absolute"</span><span class="nt">&gt;</span>box 2 Lorem ipsum dolor sit amet<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box3"</span><span class="nt">&gt;</span>
+    box 3 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    Voluptatibus, quis. Lorem ipsum dolor sit, amet consectetur adipisicing
+    elit. Cum voluptates veniam fuga, cupiditate ipsam laboriosam!
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.wrapper</span> <span class="p">{</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">5px</span> <span class="nb">solid</span> <span class="m">#046865</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.box1</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#e53d00</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.box2</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#ffe900</span><span class="p">;</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.box3</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#21a0a0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>可以看到 <code class="language-plaintext highlighter-rouge">.box2</code> 加上了 <code class="language-plaintext highlighter-rouge">position: absolute</code> 之後，後面的 <code class="language-plaintext highlighter-rouge">.box3</code> 會跑上來，因為 <code class="language-plaintext highlighter-rouge">.box2</code> 已經有自己獨立的一層。</p>
+
+<p>寬度的部分也因為 <code class="language-plaintext highlighter-rouge">.box2</code> 沒有設定絕對寬度，再加上脫離父元素(<code class="language-plaintext highlighter-rouge">.wrapper</code>)，所以<code class="language-plaintext highlighter-rouge">.box2</code>寬度等於該內容寬度。</p>
+
+<p><img src="https://i.imgur.com/g53E5JM.png" alt="Imgur"></p>
+
+<hr>
+
+<h4 id="範例-2---在-box-2-加上-position-absolute-再加上-top-0">範例 2 - 在 box 2 加上 <code class="language-plaintext highlighter-rouge">position: absolute;</code> 再加上 <code class="language-plaintext highlighter-rouge">top: 0</code>
+</h4>
+
+<p>如果在 <code class="language-plaintext highlighter-rouge">.absolute</code> 上面加上 <code class="language-plaintext highlighter-rouge">top: 0</code>，可以看到因為父元素 <code class="language-plaintext highlighter-rouge">.wrapper</code> 的 <code class="language-plaintext highlighter-rouge">position: static</code>，所以 <code class="language-plaintext highlighter-rouge">.box2</code> 並不會相對於<code class="language-plaintext highlighter-rouge">.wrapper</code> 的位置進行定位，反而是相對定位於左上角的 <code class="language-plaintext highlighter-rouge">&lt;html&gt;</code>。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.wrapper</span> <span class="p">{</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">5px</span> <span class="nb">solid</span> <span class="m">#046865</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.box1</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#e53d00</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.box2</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#ffe900</span><span class="p">;</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.box3</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#21a0a0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="https://i.imgur.com/iFfASvR.png" alt="Imgur"></p>
+
+<hr>
+
+<h4 id="範例-3---在-box-2-加上-position-absolute-再加上-top-0在父元素wrapper-加上-position-relative">範例 3 - 在 box 2 加上 <code class="language-plaintext highlighter-rouge">position: absolute;</code> 再加上 <code class="language-plaintext highlighter-rouge">top: 0</code>，在父元素<code class="language-plaintext highlighter-rouge">.wrapper</code> 加上 <code class="language-plaintext highlighter-rouge">position: relative</code>
+</h4>
+
+<p>如果在 <code class="language-plaintext highlighter-rouge">.wrapper</code> 上面加上 <code class="language-plaintext highlighter-rouge">position: relative;</code>，可以看到 <code class="language-plaintext highlighter-rouge">.box2</code> 會相對於<code class="language-plaintext highlighter-rouge">.wrapper</code> 的位置進行定位。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.wrapper</span> <span class="p">{</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">5px</span> <span class="nb">solid</span> <span class="m">#046865</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.box1</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#e53d00</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.box2</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#ffe900</span><span class="p">;</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.box3</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#21a0a0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="https://i.imgur.com/l7lVWg4.png" alt="Imgur"></p>
+
+<h2 id="sticky-positioning">Sticky Positioning</h2>
+
+<p><code class="language-plaintext highlighter-rouge">position: sticky;</code>是一個比較新的屬性，如果要支援舊瀏覽器或是 IE，需要使用別的方法。詳細瀏覽器支援可以參考 <a href="https://caniuse.com/?search=position%3Asticky">Can I Use…</a>。</p>
+
+<p>使用 <code class="language-plaintext highlighter-rouge">position: sticky;</code> 的元素會根據<strong>使用者的 scroll bar 位置</strong>進行定位。</p>
+
+<p><code class="language-plaintext highlighter-rouge">position: sticky;</code> 的元素有點像是 <code class="language-plaintext highlighter-rouge">position: relative</code> 和 <code class="language-plaintext highlighter-rouge">position: fixed</code> 之間做切換。
+在預設時有 <code class="language-plaintext highlighter-rouge">position: relative</code>，但 scroll 到某一位置時，該元素會變成 <code class="language-plaintext highlighter-rouge">position: fixed</code>，一直固定在瀏覽器的某一個位置。</p>
+
+<h3 id="範例-4">範例</h3>
+
+<p><a href="https://codepen.io/iosum/pen/GRdrpqM">CodePen</a></p>
+
+<p>可以看到一開始時，紅色底色的 <code class="language-plaintext highlighter-rouge">div</code> 被定位在某一個位置，但是當我 scroll 到某一個地方的時候，紅色底色的 <code class="language-plaintext highlighter-rouge">div</code> 就好像使用了<code class="language-plaintext highlighter-rouge">position: fixed</code>，將 <code class="language-plaintext highlighter-rouge">div</code> 一直定位在上方。</p>
+
+<p><img src="https://i.imgur.com/8zuS1NO.gif" alt="Imgur"></p>
+
+<h2 id="參考資料">參考資料</h2>
+
+<p><a href="https://www.w3school.com.cn/css/css_positioning.asp">CSS 布局 - position 属性</a></p>
+
+<p><a href="https://zh-tw.learnlayout.com/">學習 CSS 版面配置</a></p>
+
+<p><a href="http://www.ruanyifeng.com/blog/2019/11/css-position.html">CSS 定位詳解</a></p>
+
+<p><a href="https://ithelp.ithome.com.tw/articles/10212202">CSS relative? absolute? 傻傻分不清楚</a></p>
+
+
+    </div>
+
+</article>
+<div class="post-nav">
+<a class="previous" href="/jekyll-theme-yat/blogging/2022/10/16/intro-to-flex-shrink.html" title="flex-shrink 屬性介紹 | css">flex-shrink 屬性介紹 | css</a><a class="next" href="/jekyll-theme-yat/blogging/2022/10/17/zoom-a-div-with-hover.html" title="Hover div 的時候放大圖片 | css">Hover div 的時候放大圖片 | css</a>
+</div>
+<div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        <li><a class="post-link" href="/jekyll-theme-yat/blogging/2022/10/03/an-equal-height-div-using-flexbox.html" title="Hover div 的時候放大圖片 | css">如何讓 flex item 等高? | css</a></li>
+<li><a class="post-link" href="/jekyll-theme-yat/snippets/2022/08/31/pass-disabled-input-to-controller.html" title="Hover div 的時候放大圖片 | css">Disabled Input 傳至 Controller | JavaScript</a></li>
+<li><a class="post-link" href="/jekyll-theme-yat/debugging/2022/12/15/windows-not-compatible.html" title="Hover div 的時候放大圖片 | css">執行 selenium 出包，此版本的 %1 與您執行的 Windows 版本不相容</a></li>
+<li><a class="post-link" href="/jekyll-theme-yat/blogging/2022/11/21/merge-column-data-to-a-cell.html" title="Hover div 的時候放大圖片 | css">將多筆資料合併為一筆顯示 - FOR XML PATH | SQL</a></li>
+</ul>
+    </div>
+<div class="post-comments"></div></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --><style type="text/css" media="screen">
+.post-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
+
+<div class="post-menu">
+  <div class="post-menu-title">TOC</div>
+  <div class="post-menu-content"></div>
+</div>
+
+<script>
+  function generateContent() {
+    var menu = document.querySelector(".post-menu");
+    var menuContent =  menu.querySelector(".post-menu-content");
+    var headings = document.querySelector(".post-content").querySelectorAll("h2, h3, h4, h5, h6");
+
+    // Hide menu when no headings
+    if (headings.length === 0) {
+      return menu.style.display = "none";
+    }
+
+    // Generate post menu
+    var menuHTML = '';
+    for (var i = 0; i < headings.length; i++) {
+      var h = headings[i];
+      menuHTML += (
+        '<li class="h-' + h.tagName.toLowerCase() + '">'
+        + '<a href="#h-' + h.getAttribute('id') + '">' + h.textContent + '</a></li>');
+    }
+
+    menuContent.innerHTML = '<ul>' + menuHTML + '</ul>';
+
+    // The header element
+    var header = document.querySelector('header.site-header');
+
+    function doMenuCollapse(index, over_items) {
+      var items = menuContent.firstChild.children;
+
+      if (over_items == undefined) {
+        over_items = 20;
+      }
+
+      if (items.length < over_items) {
+        return;
+      }
+
+      var activeItem = items[index];
+      var beginItem = activeItem
+      var endItem = activeItem
+      var beginIndex = index;
+      var endIndex = index + 1;
+      while (beginIndex >= 0
+        && !items[beginIndex].classList.contains('h-h2')) {
+        beginIndex -= 1;
+      }
+      while (endIndex < items.length
+        && !items[endIndex].classList.contains('h-h2')) {
+        endIndex += 1;
+      }
+      for (var i = 0; i < beginIndex; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+      for (var i = beginIndex + 1; i < endIndex; i++) {
+        item = items[i]
+        // if (!item.classList.contains('h-h2')) {
+          item.style.display = '';
+        // }
+      }
+      for (var i = endIndex; i < items.length; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+    }
+
+    // Init menu collapsed
+    doMenuCollapse(-1);
+
+    // Active the menu item
+    window.addEventListener('scroll', function (event) {
+      var lastActive = menuContent.querySelector('.active');
+      var changed = true;
+      var activeIndex = -1;
+      for (var i = headings.length - 1; i >= 0; i--) {
+        var h = headings[i];
+        var headingRect = h.getBoundingClientRect();
+        var headerRect = header.getBoundingClientRect();
+        var headerTop = Math.floor(headerRect.top);
+        var headerHeight = Math.floor(headerRect.height);
+        var headerHeight = headerTop + headerHeight + 20;
+        if (headingRect.top <= headerHeight) {
+          var id = 'h-' + h.getAttribute('id');
+          var a = menuContent.querySelector('a[href="#' + id  + '"]');
+          var curActive = a.parentNode;
+          if (curActive) {
+            curActive.classList.add('active');
+            activeIndex = i;
+          }
+          if (lastActive == curActive) {
+            changed = false;
+          }
+          break;
+        }
+      }
+      if (changed) {
+        if (lastActive) {
+          lastActive.classList.remove('active');
+        }
+        doMenuCollapse(activeIndex);
+      }
+      event.preventDefault();
+    });
+  }
+  generateContent();
+</script>
+</section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/jekyll-theme-yat/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+<div>© 2022 Casey Ho
+      </div>
+      <div>Powered by
+        <a title="Jekyll is a simple, blog-aware, static site
+                generator." href="https://jekyllrb.com/">Jekyll</a>
+        &amp;
+        <a title="Yat, yet
+                another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <!-- <div class="footer-col rss-subscribe">Subscribe <a href="/jekyll-theme-yat/feed.xml">via RSS</a></div> -->
+      <div class="contact">
+        <a href="https://github.com/iosum" class="contact-github" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-github" viewbox="0 0 16 16">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/chiayingho/" class="contact-linkedin" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-linkedin" viewbox="0 0 16 16">
+            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"></path>
+          </svg>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
