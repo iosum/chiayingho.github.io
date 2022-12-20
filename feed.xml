@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="https://iosum.github.io//jekyll-theme-yat/feed.xml" rel="self" type="application/atom+xml" /><link href="https://iosum.github.io//jekyll-theme-yat/" rel="alternate" type="text/html" /><updated>2022-12-20T01:14:39+00:00</updated><id>https://iosum.github.io//jekyll-theme-yat/feed.xml</id><title type="html">Casey’s Blog</title><author><name>Casey Ho</name></author><entry><title type="html">執行 selenium 出包，此版本的 %1 與您執行的 Windows 版本不相容</title><link href="https://iosum.github.io//jekyll-theme-yat/debugging/2022/12/15/windows-not-compatible.html" rel="alternate" type="text/html" title="執行 selenium 出包，此版本的 %1 與您執行的 Windows 版本不相容" /><published>2022-12-15T00:00:00+00:00</published><updated>2022-12-15T00:00:00+00:00</updated><id>https://iosum.github.io//jekyll-theme-yat/debugging/2022/12/15/windows-not-compatible</id><content type="html" xml:base="https://iosum.github.io//jekyll-theme-yat/debugging/2022/12/15/windows-not-compatible.html"><![CDATA[<h1 id="此版本的-1-與您執行的-windows-版本不相容">此版本的 %1 與您執行的 Windows 版本不相容</h1>
+
+<h2 id="錯誤訊息">錯誤訊息</h2>
+
+<blockquote>
+  <p>OSError: [WinError 216] 此版本的 %1 與您執行的 Windows 版本不相容。請檢查電腦的系統資訊，然後連絡軟體發行者。
+The version of %1 is not compatible with the version of Windows you’re running.</p>
+</blockquote>
+
+<h2 id="解決方法">解決方法</h2>
+
+<p>通常是 x86 和 x64 位元的衝突，不過這邊指的是 Driver 和電腦的安裝版版本不一致，需下載一樣的版本。</p>
+
+<p>以 Google Chrome 為例：</p>
+
+<p><img src="https://i.imgur.com/prLfuQ0.png" alt="https://i.imgur.com/prLfuQ0.png" /></p>
+
+<p>可以看到我的 Chrome 是安裝 108.0.5359.125</p>
+
+<p><img src="https://i.imgur.com/or9fF2R.png" alt="https://i.imgur.com/or9fF2R.png" /></p>
+
+<p>Driver 也需要下載相同的版本</p>
+
+<p><img src="https://i.imgur.com/LwO9Mix.png" alt="https://i.imgur.com/LwO9Mix.png" /></p>
+
+<p>將下載好的 Driver 放在跟 <code class="language-plaintext highlighter-rouge">python.exe</code> 同一個資料夾</p>
+
+<p><img src="https://i.imgur.com/pxI5Wrc.png" alt="https://i.imgur.com/pxI5Wrc.png" /></p>
+
+<p>可以執行 Sample Code 看能不能成功</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from  selenium  import  webdriver
+from  selenium.webdriver.chrome.options  import  Options
+
+#使用chrome的webdriver
+chrome_options = Options()
+chrome_options.add_experimental_option("detach", True)
+driver = webdriver.Chrome(options=chrome_options)
+
+#開啟google首頁
+driver.get('&lt;https://www.google.com/&gt;')
+
+#如果需要執行完自動關閉，就要加上下面這一行
+#browser.close()
+
+</code></pre></div></div>
+
+<p>成功的畫面</p>
+
+<p><img src="https://i.imgur.com/kYFb9e5.png" alt="https://i.imgur.com/kYFb9e5.png" /></p>]]></content><author><name>Casey</name></author><category term="Debugging" /><category term="selenium" /><summary type="html"><![CDATA[此版本的 %1 與您執行的 Windows 版本不相容]]></summary></entry><entry><title type="html">No valid Oracle clients found. You need at least one 64-bit client properly configured. | Toad for Oracle</title><link href="https://iosum.github.io//jekyll-theme-yat/debugging/2022/11/22/no-valid-oracle-clients-found-toad-for-oracle.html" rel="alternate" type="text/html" title="No valid Oracle clients found. You need at least one 64-bit client properly configured. | Toad for Oracle" /><published>2022-11-22T00:00:00+00:00</published><updated>2022-11-22T00:00:00+00:00</updated><id>https://iosum.github.io//jekyll-theme-yat/debugging/2022/11/22/no-valid-oracle-clients-found-toad-for-oracle</id><content type="html" xml:base="https://iosum.github.io//jekyll-theme-yat/debugging/2022/11/22/no-valid-oracle-clients-found-toad-for-oracle.html"><![CDATA[<h1 id="no-valid-oracle-clients-found-you-need-at-least-one-64-bit-client-properly-configured--toad-for-oracle">No valid Oracle clients found. You need at least one 64-bit client properly configured. | Toad for Oracle</h1>
+
+<h2 id="錯誤原因">錯誤原因</h2>
+
+<p>因為我安裝的 Toad 為 64 bit，但是 Oracle Instant Client 為 32 bit，所以需要另外再下載  64 bit 的 Oracle Instant Client。</p>
+
+<p><img src="https://i.imgur.com/y1zyw6j.png" alt="Imgur" /></p>
+<blockquote>
+  <p>可以從 Help &gt; About 查看 Toad 目前使用 x86 還是 x64</p>
+</blockquote>
+
+<p><img src="https://i.imgur.com/ZDtrtsm.png" alt="Imgur" /></p>
+
+<p><img src="https://i.imgur.com/EjzuQ47.png" alt="Imgur" /></p>
+
+<blockquote>
+  <p>如果之前有安裝過，可以執行 sqlplus.exe 並打開工作管理員之後查看 Oracle Instant Client 的版本</p>
+</blockquote>
+
+<p><img src="https://i.imgur.com/hkpGsjz.png" alt="Imgur" /></p>
+
+<h2 id="解決步驟">解決步驟</h2>
+
+<ol>
+  <li>到 Oracle 官網下載 <a href="https://www.oracle.com/database/technologies/instant-client/downloads.html">Oracle Instant Client Downloads</a>，需要注意位元，如果 Toad 安裝 32 bit的版本 ，Oracle Instant Client 也需要安裝 32 bit，如果 Toad 安裝 64 bit的版本 ，Oracle Instant Client 也需要安裝 64 bit。</li>
+</ol>
+
+<p><img src="https://i.imgur.com/WsstnTy.png" alt="Imgur" /></p>
+
+<blockquote>
+  <p>這一步很重要，因為容易踩雷!!</p>
+</blockquote>
+
+<ol>
+  <li>因為我的電腦是 Windows 10，再加上我要安裝的 Toad 是64bit 的版本，所以下載 Oracle Instant Client 64 bit的版本。</li>
+</ol>
+
+<p><img src="https://i.imgur.com/qHHb5BA.png" alt="Imgur" /></p>
+
+<ol>
+  <li>解壓縮之後長的是這樣</li>
+</ol>
+
+<p><img src="https://i.imgur.com/o1F1zYV.png" alt="Imgur" /></p>
+
+<ol>
+  <li>搜尋控制台</li>
+</ol>
+
+<p><img src="https://i.imgur.com/7FWHaul.png" alt="Imgur" /></p>
+
+<ol>
+  <li>搜尋環境 &gt; 點擊編輯系統環境變數</li>
+</ol>
+
+<p><img src="https://i.imgur.com/DVpJrJ8.png" alt="Imgur" /></p>
+
+<ol>
+  <li>點「環境變數」</li>
+</ol>
+
+<p><img src="https://i.imgur.com/a96p7m8.png" alt="Imgur" /></p>
+
+<ol>
+  <li>點擊 Path &gt; 點擊編輯</li>
+</ol>
+
+<p><img src="https://i.imgur.com/wyFTVcg.png" alt="Imgur" /></p>
+
+<ol>
+  <li>點擊新增 &gt; 將剛剛解壓縮的資料夾的檔案路徑貼上&gt; 上移移到第一個 &gt; 按下確定</li>
+</ol>
+
+<p><img src="https://i.imgur.com/3Stsfso.png" alt="Imgur" /></p>
+
+<ol>
+  <li>在 Toad 上就可以看到 Connect Using 已經指向我們剛剛安裝的 Oracle Instant Client，這時候在打上伺服器 IP 即可連線成功。</li>
+</ol>
+
+<p><img src="https://blog.toadworld.com/hs-fs/hubfs/instant11.jpg?width=477&amp;name=instant11.jpg" alt="" /></p>
+
+<h2 id="參考資料">參考資料</h2>
+
+<p><a href="https://blog.toadworld.com/how-to-install-an-oracle-instant-client-for-toad-for-oracle">How to install an Oracle Instant Client for Toad® for Oracle</a></p>]]></content><author><name>Casey</name></author><category term="Debugging" /><category term="toad" /><summary type="html"><![CDATA[No valid Oracle clients found. You need at least one 64-bit client properly configured. | Toad for Oracle]]></summary></entry><entry><title type="html">將多筆資料合併為一筆顯示 - FOR XML PATH | SQL</title><link href="https://iosum.github.io//jekyll-theme-yat/blogging/2022/11/21/merge-column-data-to-a-cell.html" rel="alternate" type="text/html" title="將多筆資料合併為一筆顯示 - FOR XML PATH | SQL" /><published>2022-11-21T00:00:00+00:00</published><updated>2022-11-21T00:00:00+00:00</updated><id>https://iosum.github.io//jekyll-theme-yat/blogging/2022/11/21/merge-column-data-to-a-cell</id><content type="html" xml:base="https://iosum.github.io//jekyll-theme-yat/blogging/2022/11/21/merge-column-data-to-a-cell.html"><![CDATA[<h1 id="將多筆資料合併為一筆顯示for-xml-path--sql">將多筆資料合併為一筆顯示FOR XML PATH | SQL</h1>
+
+<p>本篇使用 AdventureWorks2016 資料庫，將每一個產品的利用 FOR XML PATH 將評論人顯示多筆資料。</p>
+
+<h2 id="步驟">步驟</h2>
+
+<ol>
+  <li>先找出要使用合併的資料 (通常在 detail page)，先鎖定 <code class="language-plaintext highlighter-rouge">ProductID = 937</code>，較容易寫出完整 query</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="s1">','</span>  <span class="o">+</span> <span class="p">[</span><span class="n">Production</span><span class="p">].[</span><span class="n">ProductReview</span><span class="p">].</span><span class="n">ReviewerName</span> 
+<span class="k">FROM</span> <span class="p">[</span><span class="n">Production</span><span class="p">].[</span><span class="n">ProductReview</span><span class="p">]</span>
+<span class="k">WHERE</span> <span class="n">ProductID</span> <span class="o">=</span> <span class="mi">937</span>
+<span class="k">FOR</span> <span class="n">XML</span> <span class="n">PATH</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>可以看到評論 ProductId = 937 的人有 David 和 Jill</p>
+
+<p><img src="https://i.imgur.com/tG8hCz0.png" alt="Imgur" /></p>
+
+<ol>
+  <li>在每一個產品中，顯示各個產品的評論的人並使用 FOR XML PATH 顯示</li>
+</ol>
+
+<ul>
+  <li>將 <code class="language-plaintext highlighter-rouge">WHERE ProductID = 937</code> 拿掉</li>
+  <li>加入 <code class="language-plaintext highlighter-rouge">[Production].[ProductReview].ProductID = [Product].ProductID</code> 和 <code class="language-plaintext highlighter-rouge">FROM [Production].[Product]</code></li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="k">SELECT</span> <span class="n">ProductID</span><span class="p">,</span> 
+	<span class="p">(</span>
+		<span class="k">SELECT</span> <span class="s1">','</span> <span class="o">+</span> <span class="p">[</span><span class="n">Production</span><span class="p">].[</span><span class="n">ProductReview</span><span class="p">].</span><span class="n">ReviewerName</span> 
+		<span class="k">FROM</span> <span class="p">[</span><span class="n">Production</span><span class="p">].[</span><span class="n">ProductReview</span><span class="p">]</span>
+		<span class="k">WHERE</span> <span class="p">[</span><span class="n">Production</span><span class="p">].[</span><span class="n">ProductReview</span><span class="p">].</span><span class="n">ProductID</span> <span class="o">=</span> <span class="p">[</span><span class="n">Product</span><span class="p">].</span><span class="n">ProductID</span>
+		<span class="k">FOR</span> <span class="n">XML</span> <span class="n">PATH</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>
+	<span class="p">)</span> <span class="k">AS</span> <span class="n">Reviewer</span>
+	<span class="k">FROM</span> <span class="p">[</span><span class="n">Production</span><span class="p">].[</span><span class="n">Product</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p><img src="https://i.imgur.com/n7t1JXJ.png" alt="Imgur" /></p>
+
+<hr />
+<p>因為這一個例子的評論人並不多，所以先拿掉沒有評論的產品</p>
+
+<pre><code class="language-SQL">SELECT *
+FROM (
+	SELECT ProductID, 
+	(
+		SELECT ',' + [Production].[ProductReview].ReviewerName 
+		FROM [Production].[ProductReview]
+		WHERE [Production].[ProductReview].ProductID = [Product].ProductID
+		FOR XML PATH('')
+	) AS Reviewer
+	FROM [Production].[Product]
+)A
+WHERE Reviewer IS NOT NULL
+</code></pre>
+
+<p>這樣就很清楚的看到哪一個產品有被誰寫評價</p>
+
+<p><img src="https://i.imgur.com/ioxRg73.png" alt="Imgur" /></p>
+
+<hr />
+
+<ol>
+  <li>使用 <code class="language-plaintext highlighter-rouge">STUFF()</code>，拿掉最左邊的逗號</li>
+</ol>
+
+<ul>
+  <li>STUFF(原字串, 起始位置, 移除長度, 替換字串)</li>
+</ul>
+
+<pre><code class="language-SQL">SELECT *
+FROM (
+	SELECT ProductID, 
+	STUFF((
+		SELECT ',' + [Production].[ProductReview].ReviewerName 
+		FROM [Production].[ProductReview]
+		WHERE [Production].[ProductReview].ProductID = [Product].ProductID
+		FOR XML PATH('')
+	), 1, 1, '') AS Reviewer
+	FROM [Production].[Product]
+)A
+WHERE Reviewer IS NOT NULL
+</code></pre>
+
+<p><img src="https://i.imgur.com/IW05Tp0.png" alt="Imgur" /></p>
+
+<h2 id="參考資料">參考資料</h2>
+
+<p><a href="https://dotblogs.com.tw/kevinya/2012/06/01/72553">[SQL]將多筆資料合併為一筆顯示(FOR XML PATH)</a></p>
+
+<p><a href="https://dotblogs.com.tw/supershowwei/2016/01/26/145353">[食譜好菜] SQL Server 使用「FOR XML」語法做欄位合併</a></p>]]></content><author><name>Casey</name></author><category term="Blogging" /><category term="sql" /><summary type="html"><![CDATA[將多筆資料合併為一筆顯示FOR XML PATH | SQL]]></summary></entry><entry><title type="html">如何壓縮 Transaction Log 檔案 | SQL</title><link href="https://iosum.github.io//jekyll-theme-yat/snippets/2022/11/11/how-to-compress-transaction-logs.html" rel="alternate" type="text/html" title="如何壓縮 Transaction Log 檔案 | SQL" /><published>2022-11-11T00:00:00+00:00</published><updated>2022-11-11T00:00:00+00:00</updated><id>https://iosum.github.io//jekyll-theme-yat/snippets/2022/11/11/how-to-compress-transaction-logs</id><content type="html" xml:base="https://iosum.github.io//jekyll-theme-yat/snippets/2022/11/11/how-to-compress-transaction-logs.html"><![CDATA[<h1 id="如何壓縮-transaction-log-檔案">如何壓縮 Transaction Log 檔案</h1>
+
+<h2 id="方法">方法</h2>
+
+<p>有 2 種方法</p>
+<ul>
+  <li>使用 SSMS</li>
+  <li>使用 TSQL</li>
+</ul>
+
+<h3 id="tsql">TSQL</h3>
+
+<p>在資料庫按右鍵 &gt; 屬性 &gt; 復原模式</p>
+
+<p><img src="https://i.imgur.com/njsUp1j.png" alt="Imgur" /></p>
+
+<p>如果 DB 的復原模式使用「簡單」，直接使用 <code class="language-plaintext highlighter-rouge">DBCC SHRINK</code> 指令即可。</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 找出 log 檔案名稱</span>
+<span class="k">SELECT</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">sys</span><span class="p">.</span><span class="n">master_files</span> <span class="k">WHERE</span> <span class="n">type_desc</span> <span class="o">=</span> <span class="s1">'LOG'</span>
+<span class="c1">-- AdventureWorks2012_log為壓縮的檔名</span>
+<span class="c1">-- 1 為 AdventureWorks2012_log 壓縮到剩 1 MB</span>
+<span class="n">DBCC</span> <span class="n">SHRINKFILE</span> <span class="p">(</span><span class="n">AdventureWorks2012_log</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>如果 DB 的復原模式使用「完整」，可以將復原模式從完整變成「簡單」後再壓縮檔案，壓縮檔案結束後再將復原模式調回完整。</p>
+
+<pre><code class="language-SQL">-- 將復原模式變成「簡單」
+ALTER DATABASE AdventureWorks2012
+SET RECOVERY SIMPLE
+GO
+-- 壓縮檔案
+DBCC SHRINKFILE (AdventureWorks2012_log, 1)
+GO
+-- 將復原模式變成「完整」
+ALTER DATABASE AdventureWorks2012
+SET RECOVERY FULL
+</code></pre>
+
+<h3 id="ssms">SSMS</h3>
+
+<ol>
+  <li>資料庫按右鍵 &gt; 工作(Tasks) &gt; 壓縮(Shrink) &gt; 檔案(Files)</li>
+</ol>
+
+<p><img src="https://i.imgur.com/WcpMB8y.png" alt="Imgur" /></p>
+
+<ol>
+  <li>檔案類型選擇紀錄檔 (log)，並選擇要壓縮的 log 檔的位置，壓縮動作可以自行選擇。</li>
+</ol>
+
+<p><img src="https://i.imgur.com/2N1kHVu.png" alt="Imgur" /></p>
+
+<ol>
+  <li>按下確定即可壓縮 log 檔</li>
+</ol>
+
+<h2 id="參考資料">參考資料</h2>
+
+<p><a href="https://www.mssqltips.com/sqlservertutorial/3311/how-to-shrink-the-transaction-log/">How to shrink the transaction log</a></p>
+
+<p><a href="https://itorz324.blogspot.com/">阿湯哥@IT三兩事</a></p>]]></content><author><name>Casey</name></author><category term="Snippets" /><category term="sql" /><summary type="html"><![CDATA[如何壓縮 Transaction Log 檔案]]></summary></entry><entry><title type="html">The DELETE statement conflicted with the REFERENCE constraint “FK_subplan_job_id” | SQL</title><link href="https://iosum.github.io//jekyll-theme-yat/snippets/2022/11/10/the-delete-statemet-conflicted.html" rel="alternate" type="text/html" title="The DELETE statement conflicted with the REFERENCE constraint “FK_subplan_job_id” | SQL" /><published>2022-11-10T00:00:00+00:00</published><updated>2022-11-10T00:00:00+00:00</updated><id>https://iosum.github.io//jekyll-theme-yat/snippets/2022/11/10/the-delete-statemet-conflicted</id><content type="html" xml:base="https://iosum.github.io//jekyll-theme-yat/snippets/2022/11/10/the-delete-statemet-conflicted.html"><![CDATA[<h1 id="the-delete-statement-conflicted-with-the-reference-constraint-fk_subplan_job_id">The DELETE statement conflicted with the REFERENCE constraint “FK_subplan_job_id”</h1>
+
+<h2 id="錯誤訊息">錯誤訊息</h2>
+
+<p><img src="https://i.imgur.com/5WWuXt9.png" alt="Imgur" /></p>
+
+<blockquote>
+  <p>“子計劃 缷除失敗”<br />
+delete 陳述式與reference 條件的約束’FK_subplan_job_id’衝突。衝突發生在資料庫<br />
+“msdb”,資料表 “dbo.sysmaintplan_subplans”,colum “job_id”。</p>
+</blockquote>
+
+<p>英文版：</p>
+<blockquote>
+  <p>TITLE: Microsoft SQL Server Management Studio —————————— Drop failed for Job ‘manual_db_backups.Subplan_1’. (Microsoft.SqlServer.Smo) For help, click: http://go.microsoft.com/fwlink?ProdName=Microsoft+SQL+Server&amp;ProdVer=9.00.3042.00&amp;EvtSrc=Microsoft.SqlServer.Management.Smo.ExceptionTemplates.FailedOperationExceptionText&amp;EvtID=Drop+Job&amp;LinkId=20476 —————————— ADDITIONAL INFORMATION: An exception occurred while executing a Transact-SQL statement or batch. (Microsoft.SqlServer.ConnectionInfo) —————————— The DELETE statement conflicted with the REFERENCE constraint “FK_subplan_job_id”. The conflict occurred in database “msdb”, table “dbo.sysmaintplan_subplans”, column ‘job_id’. The statement has been terminated. (Microsoft SQL Server, Error: 547) For help, click: http://go.microsoft.com/fwlink?ProdName=Microsoft+SQL+Server&amp;ProdVer=09.00.3042&amp;EvtSrc=MSSQLServer&amp;EvtID=547&amp;LinkId=20476</p>
+</blockquote>
+
+<h2 id="解決辦法">解決辦法</h2>
+
+<p>Step 1：先查詢子計畫和子計畫的 log</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">USE</span> <span class="p">[</span><span class="n">MSDB</span><span class="p">]</span>
+<span class="k">GO</span>
+
+<span class="c1">-- 查詢子計畫</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">sysmaintplan_subplans</span>
+
+<span class="c1">-- 查詢子計畫log</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">sysmaintplan_log</span>
+</code></pre></div></div>
+
+<p>Step 2：刪除子計畫和子計畫的 log</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">USE</span> <span class="p">[</span><span class="n">MSDB</span><span class="p">]</span>
+<span class="k">go</span>
+
+<span class="c1">-- 刪除維護計畫子計畫的 log</span>
+<span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">sysmaintplan_log</span>
+<span class="k">WHERE</span> <span class="n">subplan_id</span> <span class="k">in</span> 
+  <span class="p">(</span> <span class="k">SELECT</span> <span class="n">Subplan_ID</span> <span class="k">from</span> <span class="n">sysmaintplan_subplans</span>
+    <span class="c1">-- change Subplan name where neccessary </span>
+  <span class="k">WHERE</span> <span class="n">subplan_name</span> <span class="o">=</span> <span class="s1">'sub plan name'</span> <span class="p">)</span> 
+
+<span class="c1">-- 刪除維護計畫子計畫</span>
+<span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">sysmaintplan_subplans</span>
+<span class="k">WHERE</span> <span class="n">subplan_name</span> <span class="o">=</span> <span class="s1">'sub plan name'</span>
+
+</code></pre></div></div>
+
+<p>Step 3：到 SQL Agent Server 刪除該計畫即可</p>
+
+<h2 id="發生原因">發生原因</h2>
+
+<p>因為先刪除主計畫之後，再刪除子計畫時，就會找不到主計畫在哪裡，因此無法刪除。</p>
+
+<h2 id="參考資料">參考資料</h2>
+
+<p><a href="https://dbamohsin.wordpress.com/2011/12/13/the-delete-statement-conflicted-with-the-reference-constraint-fk_subplan_job_id/">The DELETE statement conflicted with the REFERENCE constraint “FK_subplan_job_id”</a></p>
+
+<p><a href="https://twchuck.blogspot.com/2010/10/ms-sql-server-jobs.html">MS SQL SERVER 刪除 工作排程(JOBS)時出現錯誤</a></p>
+
+<hr />
+
+<h1 id="備份資料庫">備份資料庫</h1>
+
+<h2 id="方法">方法</h2>
+<ul>
+  <li>SSMS</li>
+  <li>TSQL</li>
+</ul>
+
+<h3 id="ssms">SSMS</h3>
+
+<ol>
+  <li>資料庫按右鍵 &gt; 工作 &gt; 備份</li>
+</ol>
+
+<p><img src="https://i.imgur.com/xYl9Jbv.png" alt="Imgur" /></p>
+
+<p><img src="https://learn.microsoft.com/zh-tw/sql/relational-databases/backup-restore/media/quickstart-backup-restore-database/backup-db-ssms.png?view=sql-server-ver16" alt="" /></p>
+
+<ol>
+  <li>按加入，選擇要把備份檔放哪裡，之後按確定即可備份。</li>
+</ol>
+
+<p><img src="https://i.imgur.com/aC3aNGU.png" alt="Imgur" /></p>
+
+<h3 id="tsql">TSQL</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">USE</span> <span class="p">[</span><span class="n">master</span><span class="p">];</span>
+<span class="k">GO</span>
+<span class="c1">-- 要備份的資料庫名稱</span>
+<span class="n">BACKUP</span> <span class="k">DATABASE</span> <span class="p">[</span><span class="n">SQLTestDB</span><span class="p">]</span>
+<span class="k">TO</span> <span class="n">DISK</span> <span class="o">=</span> <span class="n">N</span><span class="s1">'Z:</span><span class="se">\S</span><span class="s1">QLServerBackups</span><span class="se">\A</span><span class="s1">dvWorksData.bak'</span> 
+<span class="k">WITH</span> <span class="n">NOFORMAT</span><span class="p">,</span> <span class="n">NOINIT</span><span class="p">,</span>
+<span class="n">NAME</span> <span class="o">=</span> <span class="n">N</span><span class="s1">'SQLTestDB-Full Database Backup'</span><span class="p">,</span> <span class="n">SKIP</span><span class="p">,</span> <span class="n">NOREWIND</span><span class="p">,</span> <span class="n">NOUNLOAD</span><span class="p">,</span> <span class="n">STATS</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="k">GO</span>
+</code></pre></div></div>]]></content><author><name>Casey</name></author><category term="Snippets" /><category term="sql" /><summary type="html"><![CDATA[The DELETE statement conflicted with the REFERENCE constraint “FK_subplan_job_id”]]></summary></entry><entry><title type="html">縮小 SSIS DB 檔案大小 | SSIS</title><link href="https://iosum.github.io//jekyll-theme-yat/blogging/2022/11/07/shrink-ssis-db-files.html" rel="alternate" type="text/html" title="縮小 SSIS DB 檔案大小 | SSIS" /><published>2022-11-07T00:00:00+00:00</published><updated>2022-11-07T00:00:00+00:00</updated><id>https://iosum.github.io//jekyll-theme-yat/blogging/2022/11/07/shrink-ssis-db-files</id><content type="html" xml:base="https://iosum.github.io//jekyll-theme-yat/blogging/2022/11/07/shrink-ssis-db-files.html"><![CDATA[<h1 id="縮小-ssis-db-檔案大小">縮小 SSIS DB 檔案大小</h1>
+
+<ol>
+  <li>
+    <p>將週期天數從預設的 365 天改到 30 天或其他更小的數字。
+<img src="https://i.imgur.com/pY2Rf6P.png" alt="Imgur" /></p>
+  </li>
+  <li>
+    <p>將 delete_batch_size 設定為 1000，預設為 10。</p>
+  </li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="k">Alter</span> <span class="k">procedure</span> <span class="n">SSISDB</span><span class="p">.[</span><span class="n">internal</span><span class="p">].[</span><span class="n">cleanup_server_retention_window</span><span class="p">]</span> <span class="k">SET</span> <span class="o">@</span><span class="n">delete_batch_size</span>  <span class="o">=</span>  <span class="mi">1000</span>
+</code></pre></div></div>
+
+<ol>
+  <li>把以下 4 張 Table 做 Page 壓縮</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">USE</span> <span class="p">[</span><span class="n">SSISDB</span><span class="p">]</span>
+<span class="k">ALTER</span> <span class="k">TABLE</span>  <span class="p">[</span><span class="n">internal</span><span class="p">].[</span><span class="n">event_messages</span><span class="p">]</span>  <span class="n">REBUILD</span>  <span class="k">PARTITION</span>  <span class="o">=</span>  <span class="k">ALL</span>  <span class="k">WITH</span> <span class="p">(</span><span class="n">DATA_COMPRESSION</span>  <span class="o">=</span>  <span class="n">PAGE</span><span class="p">)</span>
+
+<span class="k">ALTER</span> <span class="k">TABLE</span>  <span class="p">[</span><span class="n">internal</span><span class="p">].[</span><span class="n">operation_messages</span><span class="p">]</span>  <span class="n">REBUILD</span>  <span class="k">PARTITION</span>  <span class="o">=</span>  <span class="k">ALL</span>  <span class="k">WITH</span> <span class="p">(</span><span class="n">DATA_COMPRESSION</span>  <span class="o">=</span>  <span class="n">PAGE</span><span class="p">)</span>
+
+<span class="k">ALTER</span> <span class="k">TABLE</span>  <span class="p">[</span><span class="n">internal</span><span class="p">].[</span><span class="n">execution_component_phases</span><span class="p">]</span>  <span class="n">REBUILD</span>  <span class="k">PARTITION</span>  <span class="o">=</span>  <span class="k">ALL</span>  <span class="k">WITH</span> <span class="p">(</span><span class="n">DATA_COMPRESSION</span>  <span class="o">=</span>  <span class="n">PAGE</span><span class="p">)</span>
+
+<span class="k">ALTER</span> <span class="k">TABLE</span>  <span class="p">[</span><span class="n">internal</span><span class="p">].[</span><span class="n">execution_data_statistics</span><span class="p">]</span>  <span class="n">REBUILD</span>  <span class="k">PARTITION</span>  <span class="o">=</span>  <span class="k">ALL</span>  <span class="k">WITH</span> <span class="p">(</span><span class="n">DATA_COMPRESSION</span>  <span class="o">=</span>  <span class="n">PAGE</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Shrink the db</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USE [SSISDB]
+
+GO
+
+DBCC SHRINKDATABASE(N'SSISDB'  )
+
+GO
+</code></pre></div></div>
+
+<h2 id="參考資料">參考資料</h2>
+<p><a href="https://sqlvikas.blogspot.com/2014/08/how-to-reduce-ssisdb-size-issue-ssisdb.html">How to Reduce SSISDB Size</a></p>]]></content><author><name>Casey</name></author><category term="Blogging" /><category term="ssis" /><summary type="html"><![CDATA[縮小 SSIS DB 檔案大小]]></summary></entry><entry><title type="html">檢查 date 是否為 null | c#</title><link href="https://iosum.github.io//jekyll-theme-yat/snippets/2022/10/24/check-date-is-null-date.html" rel="alternate" type="text/html" title="檢查 date 是否為 null | c#" /><published>2022-10-24T00:00:00+00:00</published><updated>2022-10-24T00:00:00+00:00</updated><id>https://iosum.github.io//jekyll-theme-yat/snippets/2022/10/24/check-date-is-null-date</id><content type="html" xml:base="https://iosum.github.io//jekyll-theme-yat/snippets/2022/10/24/check-date-is-null-date.html"><![CDATA[<h2 id="snippet">Snippet</h2>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">if</span> <span class="p">(!</span><span class="n">datetime</span><span class="p">.</span><span class="n">HasValue</span><span class="p">)</span>
+ <span class="p">{</span>
+     <span class="c1">//unassigned</span>
+ <span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="參考資料">參考資料</h2>
+
+<p>[<a href="https://stackoverflow.com/questions/305154/checking-to-see-if-a-datetime-variable-has-had-a-value-assigned">Checking to see if a DateTime variable has had a value assigned</a></p>]]></content><author><name>Casey</name></author><category term="Snippets" /><category term="c#" /><summary type="html"><![CDATA[Snippet]]></summary></entry><entry><title type="html">dynamic type 介紹 | c#</title><link href="https://iosum.github.io//jekyll-theme-yat/snippets/2022/10/24/dynamic-type-in-c-sharp.html" rel="alternate" type="text/html" title="dynamic type 介紹 | c#" /><published>2022-10-24T00:00:00+00:00</published><updated>2022-10-24T00:00:00+00:00</updated><id>https://iosum.github.io//jekyll-theme-yat/snippets/2022/10/24/dynamic-type-in-c-sharp</id><content type="html" xml:base="https://iosum.github.io//jekyll-theme-yat/snippets/2022/10/24/dynamic-type-in-c-sharp.html"><![CDATA[<h1 id="dynamic-type-in-c">Dynamic Type in C#</h1>
+
+<p>在 C# 4.0，有一個新的 Type 叫做 Dynamic Type。</p>
+
+<p>Dynamic Type 不會在 compile time 做 checking，而是在 runtime 的時候編譯器才會知道該變數的 type ，並在 runtime 做 checking。</p>
+
+<h2 id="須注意事項">須注意事項</h2>
+
+<ul>
+  <li>在大多數的時候，可以把 dynamic type 視為 object。</li>
+  <li>如果想要知道該變數在 runtime 的 type，可以使用 <code class="language-plaintext highlighter-rouge">GetType()</code>。</li>
+</ul>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+
+	<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="kt">dynamic</span> <span class="n">a</span> <span class="p">=</span> <span class="s">"this is a string"</span><span class="p">;</span>
+		<span class="kt">dynamic</span> <span class="n">b</span> <span class="p">=</span> <span class="m">123234</span><span class="p">;</span>
+
+		<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Get the actual type of value1: {0}"</span><span class="p">,</span>
+                                  <span class="n">a</span><span class="p">.</span><span class="nf">GetType</span><span class="p">().</span><span class="nf">ToString</span><span class="p">());</span>
+
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Get the actual type of value2: {0}"</span><span class="p">,</span>
+                                  <span class="n">b</span><span class="p">.</span><span class="nf">GetType</span><span class="p">().</span><span class="nf">ToString</span><span class="p">());</span>
+
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>結果：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Get the actual type of value1: System.String
+Get the actual type of value2: System.Int32
+</code></pre></div></div>
+
+<p><img src="https://i.imgur.com/GdwesQY.png" alt="Imgur" /></p>
+
+<ul>
+  <li>當 assign 一個 class object 的 type 使用 dynamic 的時候，compiler 並不會偵測這一個 dynamic object 有沒有正確的使用 method 或是 property。</li>
+</ul>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+
+	<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="kt">dynamic</span> <span class="n">s1</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Student</span><span class="p">();</span>
+
+		<span class="c1">// runtime error</span>
+		<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">s1</span><span class="p">.</span><span class="nf">DisplayStudentInfo</span><span class="p">());</span>
+
+	<span class="p">}</span>
+
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Student</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">DisplayStudentInfo</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Run-time exception (line 10): No overload for method 'DisplayStudentInfo' takes '0' arguments
+
+Stack Trace:
+
+[Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: No overload for method 'DisplayStudentInfo' takes '0' arguments]
+at CallSite.Target(Closure , CallSite , Object )
+at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+at Program.Main() :line 10
+</code></pre></div></div>
+
+<p><img src="https://i.imgur.com/myCsp1I.png" alt="Imgur" /></p>
+
+<ul>
+  <li>可以將 dynamic object 當成參數傳入 method。</li>
+</ul>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="c1">// 2數相加</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Add</span><span class="p">(</span><span class="kt">dynamic</span> <span class="n">s1</span><span class="p">,</span> <span class="kt">dynamic</span> <span class="n">s2</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">s1</span> <span class="p">+</span> <span class="n">s2</span><span class="p">);</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>如果 method 或是 property 不相容，compiler 會在 runtime 有錯誤訊息。</li>
+  <li>在 Visual Studio 中不支持 Intellisense。</li>
+  <li>如果沒有額外做 dynamic type 的 checking，compiler 就不會丟錯誤。</li>
+</ul>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+
+	<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="c1">// compiler 不會有錯誤</span>
+		<span class="nf">Add</span><span class="p">(</span><span class="k">false</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="c1">// 2數相加</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Add</span><span class="p">(</span><span class="kt">dynamic</span> <span class="n">s1</span><span class="p">,</span> <span class="kt">dynamic</span> <span class="n">s2</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">s1</span> <span class="p">+</span> <span class="n">s2</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>但在執行的時候會有錯誤。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Run-time exception (line 14): Operator '+' cannot be applied to operands of type 'bool' and 'bool'
+
+Stack Trace:
+
+[Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: Operator '+' cannot be applied to operands of type 'bool' and 'bool']
+at CallSite.Target(Closure , CallSite , Object , Object )
+at System.Dynamic.UpdateDelegates.UpdateAndExecute2[T0,T1,TRet](CallSite site, T0 arg0, T1 arg1)
+at Program.addstr(Object s1, Object s2) :line 14
+at Program.Main() :line 8
+</code></pre></div></div>
+
+<p><img src="https://i.imgur.com/LH0rNbV.png" alt="Imgur" /></p>
+
+<h2 id="參考資料">參考資料</h2>
+
+<p><a href="https://www.geeksforgeeks.org/dynamic-type-in-c-sharp/">Dynamic Type in C#</a></p>
+
+<p><a href="https://www.tutorialsteacher.com/csharp/csharp-dynamic-type">C# - Dynamic Types</a></p>]]></content><author><name>Casey</name></author><category term="Snippets" /><category term="c#" /><summary type="html"><![CDATA[Dynamic Type in C#]]></summary></entry><entry><title type="html">保留原本 C# 的 Exception message，並加上客製化 Exception Message | c#</title><link href="https://iosum.github.io//jekyll-theme-yat/snippets/2022/10/19/add-a-message-to-an-exception-without-losing-any-information-in-C-sharp.html" rel="alternate" type="text/html" title="保留原本 C# 的 Exception message，並加上客製化 Exception Message | c#" /><published>2022-10-19T00:00:00+00:00</published><updated>2022-10-19T00:00:00+00:00</updated><id>https://iosum.github.io//jekyll-theme-yat/snippets/2022/10/19/add-a-message-to-an-exception-without-losing-any-information-in-C-sharp</id><content type="html" xml:base="https://iosum.github.io//jekyll-theme-yat/snippets/2022/10/19/add-a-message-to-an-exception-without-losing-any-information-in-C-sharp.html"><![CDATA[<p>假設現在程式拋出了一個 Exception，那麼我們看到的訊息應該會是 C# 預設寫好的錯誤訊息，但同時我們希望使用者需要知道這一個錯誤訊息，開發者應該可以將預設寫好的錯誤訊息變成使用者看得懂的東西。此時可以使用 Exception 的 <a href="https://learn.microsoft.com/en-us/dotnet/api/system.exception.data?redirectedfrom=MSDN&amp;view=net-6.0#System_Exception_Data">Data 屬性</a>。</p>
+
+<p>Data 屬於 key/value pair，可以傳入自己想要的 key 和 value，可以使用以下 <code class="language-plaintext highlighter-rouge">Exception.Data[key]</code> 取到 Value。</p>
+
+<h2 id="範例">範例</h2>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ex</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="s">"UserMessage"</span><span class="p">,</span> <span class="s">"An error occurred while trying to load the XSLT file."</span><span class="p">);</span>
+    <span class="k">throw</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="nf">Contains</span><span class="p">(</span><span class="s">"UserMessage"</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">MessageBox</span><span class="p">.</span><span class="nf">Show</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="n">Data</span><span class="p">[</span><span class="s">"UserMessage"</span><span class="p">].</span><span class="nf">ToString</span><span class="p">());</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="n">MessageBox</span><span class="p">.</span><span class="nf">Show</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="參考資料">參考資料</h2>
+
+<p><a href="https://stackoverflow.com/questions/14409988/how-can-i-add-a-message-to-an-exception-without-losing-any-information-in-c">How can I add a message to an exception without losing any information in C#?</a></p>]]></content><author><name>Casey</name></author><category term="Snippets" /><category term="c#" /><summary type="html"><![CDATA[假設現在程式拋出了一個 Exception，那麼我們看到的訊息應該會是 C# 預設寫好的錯誤訊息，但同時我們希望使用者需要知道這一個錯誤訊息，開發者應該可以將預設寫好的錯誤訊息變成使用者看得懂的東西。此時可以使用 Exception 的 Data 屬性。]]></summary></entry><entry><title type="html">The contextual keyword ‘var’ may only appear within a local variable declaration. | c#</title><link href="https://iosum.github.io//jekyll-theme-yat/snippets/2022/10/19/the-contextual-keyword-var-may-only-appear-within-a-local-variable-declaration.html" rel="alternate" type="text/html" title="The contextual keyword ‘var’ may only appear within a local variable declaration. | c#" /><published>2022-10-19T00:00:00+00:00</published><updated>2022-10-19T00:00:00+00:00</updated><id>https://iosum.github.io//jekyll-theme-yat/snippets/2022/10/19/the-contextual-keyword-var-may-only-appear-within-a-local-variable-declaration</id><content type="html" xml:base="https://iosum.github.io//jekyll-theme-yat/snippets/2022/10/19/the-contextual-keyword-var-may-only-appear-within-a-local-variable-declaration.html"><![CDATA[<h2 id="錯誤訊息">錯誤訊息</h2>
+
+<blockquote>
+  <p>The contextual keyword ‘var’ may only appear within a local variable declaration.</p>
+</blockquote>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Web</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">WebMatrix.Data</span><span class="p">;</span>
+
+<span class="c1">/// &lt;summary&gt;</span>
+<span class="c1">/// Summary description for ClassName</span>
+<span class="c1">/// &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Base</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">CalculateTotalPriceInCart</span><span class="p">(</span><span class="kt">var</span> <span class="n">PartNumber</span><span class="p">,</span> <span class="kt">var</span> <span class="n">Description</span><span class="p">,</span> <span class="kt">var</span> <span class="n">OrderId</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">IsBoxed</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">database</span> <span class="p">=</span> <span class="n">Database</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="s">"OSF"</span><span class="p">);</span>
+        <span class="kt">var</span> <span class="n">query</span> <span class="p">=</span> <span class="s">""</span><span class="p">;</span>
+        <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="s">""</span><span class="p">;</span>
+        <span class="kt">decimal</span> <span class="n">price</span> <span class="p">=</span> <span class="m">0.00</span><span class="n">M</span><span class="p">;</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">IsBoxed</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// Select item.</span>
+            <span class="n">query</span> <span class="p">=</span> <span class="s">"SELECT Boxes, BoxPrice FROM Cart WHERE OrderId = '"</span> <span class="p">+</span> <span class="n">OrderId</span> <span class="p">+</span> <span class="s">"' AND PartNumber = '"</span> <span class="p">+</span> <span class="n">PartNumber</span> <span class="p">+</span> <span class="s">"' AND Description = '"</span> <span class="p">+</span> <span class="n">Description</span> <span class="p">+</span> <span class="s">"' AND IsBoxed = 1"</span><span class="p">;</span>
+            <span class="n">result</span> <span class="p">=</span> <span class="n">database</span><span class="p">.</span><span class="nf">Query</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
+
+            <span class="c1">// Recalculate Price.</span>
+            <span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="n">result</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">price</span> <span class="p">=</span> <span class="n">result</span><span class="p">.</span><span class="n">Boxes</span> <span class="p">*</span> <span class="n">result</span><span class="p">.</span><span class="n">BoxPrice</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="c1">// Update item.</span>
+            <span class="n">query</span> <span class="p">=</span> <span class="s">"UPDATE Cart SET BoxPrice = '"</span> <span class="p">+</span> <span class="n">price</span> <span class="p">+</span> <span class="s">"' WHERE OrderId = '"</span> <span class="p">+</span> <span class="n">OrderId</span> <span class="p">+</span> <span class="s">"' AND PartNumber = '"</span> <span class="p">+</span> <span class="n">PartNumber</span> <span class="p">+</span> <span class="s">"' AND Description = '"</span> <span class="p">+</span> <span class="n">Description</span> <span class="p">+</span> <span class="s">"' AND IsBoxed = 1"</span><span class="p">;</span>
+            <span class="n">database</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h2 id="為什麼">為什麼</h2>
+
+<p><code class="language-plaintext highlighter-rouge">var</code> 只能在宣告並初始化後才可以在 method 的 scope 使用，不能在 global scope 使用和當作參數使用。</p>
+
+<p>因為編譯器無法知道 <code class="language-plaintext highlighter-rouge">CalculateTotalPriceInCart</code> 必須要接到的參數的 data type 是什麼。</p>
+
+<h2 id="解決方法">解決方法</h2>
+
+<p>將 <code class="language-plaintext highlighter-rouge">CalculateTotalPriceInCart</code> 所接收到的參數的資料型態變成 strongly data type。</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Web</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">WebMatrix.Data</span><span class="p">;</span>
+
+<span class="c1">/// &lt;summary&gt;</span>
+<span class="c1">/// Summary description for ClassName</span>
+<span class="c1">/// &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Base</span>
+<span class="p">{</span>
+		<span class="c1">// var 不能當作參數的型態傳入，參數的資料型態必須是強型別的資料型態。</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">CalculateTotalPriceInCart</span><span class="p">(</span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="kt">dynamic</span><span class="p">&gt;</span> <span class="n">Description</span><span class="p">,</span> <span class="kt">string</span> <span class="n">PartNumber</span><span class="p">,</span> <span class="kt">string</span> <span class="n">OrderId</span><span class="p">,</span><span class="kt">bool</span> <span class="n">IsBoxed</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">database</span> <span class="p">=</span> <span class="n">Database</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="s">"OSF"</span><span class="p">);</span>
+        <span class="kt">var</span> <span class="n">query</span> <span class="p">=</span> <span class="s">""</span><span class="p">;</span>
+        <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="s">""</span><span class="p">;</span>
+        <span class="kt">decimal</span> <span class="n">price</span> <span class="p">=</span> <span class="m">0.00</span><span class="n">M</span><span class="p">;</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">IsBoxed</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// Select item.</span>
+            <span class="n">query</span> <span class="p">=</span> <span class="s">"SELECT Boxes, BoxPrice FROM Cart WHERE OrderId = '"</span> <span class="p">+</span> <span class="n">OrderId</span> <span class="p">+</span> <span class="s">"' AND PartNumber = '"</span> <span class="p">+</span> <span class="n">PartNumber</span> <span class="p">+</span> <span class="s">"' AND Description = '"</span> <span class="p">+</span> <span class="n">Description</span> <span class="p">+</span> <span class="s">"' AND IsBoxed = 1"</span><span class="p">;</span>
+            <span class="n">result</span> <span class="p">=</span> <span class="n">database</span><span class="p">.</span><span class="nf">Query</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
+
+            <span class="c1">// Recalculate Price.</span>
+            <span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="n">result</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">price</span> <span class="p">=</span> <span class="n">result</span><span class="p">.</span><span class="n">Boxes</span> <span class="p">*</span> <span class="n">result</span><span class="p">.</span><span class="n">BoxPrice</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="c1">// Update item.</span>
+            <span class="n">query</span> <span class="p">=</span> <span class="s">"UPDATE Cart SET BoxPrice = '"</span> <span class="p">+</span> <span class="n">price</span> <span class="p">+</span> <span class="s">"' WHERE OrderId = '"</span> <span class="p">+</span> <span class="n">OrderId</span> <span class="p">+</span> <span class="s">"' AND PartNumber = '"</span> <span class="p">+</span> <span class="n">PartNumber</span> <span class="p">+</span> <span class="s">"' AND Description = '"</span> <span class="p">+</span> <span class="n">Description</span> <span class="p">+</span> <span class="s">"' AND IsBoxed = 1"</span><span class="p">;</span>
+            <span class="n">database</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h2 id="參考資料">參考資料</h2>
+
+<p><a href="https://stackoverflow.com/questions/6628358/the-contextual-keyword-var-may-only-appear-within-a-local-variable-declaration">The contextual keyword ‘var’ may only appear within a local variable declaration issues</a></p>]]></content><author><name>Casey</name></author><category term="Snippets" /><category term="c#" /><summary type="html"><![CDATA[錯誤訊息]]></summary></entry></feed>

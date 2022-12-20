@@ -1,20 +1,3 @@
-<<<<<<< HEAD
----
-layout: about
-title: About
----
-
-<h2>About</h2>
-
-<img
-  src="https://i.imgur.com/L0q501n.jpg"
-  alt=""
-  srcset=""
-  width="200"
-  height="200"
-  class="profile-img"
-/>
-=======
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,19 +7,22 @@ title: About
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>About | Casey’s Blog</title>
+<title>dynamic type 介紹 c# | Casey’s Blog</title>
 <meta name="generator" content="Jekyll v4.3.1">
-<meta property="og:title" content="About">
-<meta name="author" content="Casey Ho">
+<meta property="og:title" content="dynamic type 介紹 c#">
+<meta name="author" content="Casey">
 <meta property="og:locale" content="en_US">
-<link rel="canonical" href="https://iosum.github.io//jekyll-theme-yat/about.html">
-<meta property="og:url" content="https://iosum.github.io//jekyll-theme-yat/about.html">
+<meta name="description" content="Dynamic Type in C#">
+<meta property="og:description" content="Dynamic Type in C#">
+<link rel="canonical" href="https://iosum.github.io//jekyll-theme-yat/snippets/2022/10/24/dynamic-type-in-c-sharp.html">
+<meta property="og:url" content="https://iosum.github.io//jekyll-theme-yat/snippets/2022/10/24/dynamic-type-in-c-sharp.html">
 <meta property="og:site_name" content="Casey’s Blog">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-10-24T00:00:00+00:00">
 <meta name="twitter:card" content="summary">
-<meta property="twitter:title" content="About">
+<meta property="twitter:title" content="dynamic type 介紹 c#">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Casey Ho"},"headline":"About","url":"https://iosum.github.io//jekyll-theme-yat/about.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Casey"},"dateModified":"2022-10-24T00:00:00+00:00","datePublished":"2022-10-24T00:00:00+00:00","description":"Dynamic Type in C#","headline":"dynamic type 介紹 c#","mainEntityOfPage":{"@type":"WebPage","@id":"https://iosum.github.io//jekyll-theme-yat/snippets/2022/10/24/dynamic-type-in-c-sharp.html"},"url":"https://iosum.github.io//jekyll-theme-yat/snippets/2022/10/24/dynamic-type-in-c-sharp.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="icon" href="">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -646,42 +632,208 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
 
 
+<header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">dynamic type 介紹  | c#</h1>
+  <h2 class="post-subtitle"></h2>
+
+  <p class="post-meta">
+    <time class="dt-published" datetime="2022-10-24T00:00:00+00:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Oct 24, 2022
+    </time>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 3 mins</span>
+  </p>
+<div class="post-tags"><a class="post-tag" href="/jekyll-theme-yat/tags.html#c#">#c#</a></div></header>
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
     <div class="post-content e-content" itemprop="articleBody">
 
-      <h2>About</h2>
+      <h1 id="dynamic-type-in-c">Dynamic Type in C#</h1>
 
-<img src="https://i.imgur.com/L0q501n.jpg" alt="" srcset="" width="200" height="200" class="profile-img">
->>>>>>> origin/gh-pages
+<p>在 C# 4.0，有一個新的 Type 叫做 Dynamic Type。</p>
 
-<p>
-  Hi, I'm Chia-Ying Ho a.k.a. Casey. Currently working as an ERP software
-  engineer at SEEC in Taiwan.
-</p>
+<p>Dynamic Type 不會在 compile time 做 checking，而是在 runtime 的時候編譯器才會知道該變數的 type ，並在 runtime 做 checking。</p>
 
-<p>
-  I love memes, hot guys and jokes. This is the place where I take some notes to
-  memorize what I've learned. BTW, this is my one of my favorite memes since I
-  own a cat and feeling related. ENJOY!!
-</p>
+<h2 id="須注意事項">須注意事項</h2>
 
-<<<<<<< HEAD
-<img
-  src="https://img-9gag-fun.9cache.com/photo/amAL1M9_700bwp.webp"
-  alt=""
-  srcset=""
-  width="400"
-  height="400"
-/>
-=======
-<img src="https://img-9gag-fun.9cache.com/photo/amAL1M9_700bwp.webp" alt="" srcset="" width="400" height="400">
+<ul>
+  <li>在大多數的時候，可以把 dynamic type 視為 object。</li>
+  <li>如果想要知道該變數在 runtime 的 type，可以使用 <code class="language-plaintext highlighter-rouge">GetType()</code>。</li>
+</ul>
 
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+
+	<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="kt">dynamic</span> <span class="n">a</span> <span class="p">=</span> <span class="s">"this is a string"</span><span class="p">;</span>
+		<span class="kt">dynamic</span> <span class="n">b</span> <span class="p">=</span> <span class="m">123234</span><span class="p">;</span>
+
+		<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Get the actual type of value1: {0}"</span><span class="p">,</span>
+                                  <span class="n">a</span><span class="p">.</span><span class="nf">GetType</span><span class="p">().</span><span class="nf">ToString</span><span class="p">());</span>
+
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Get the actual type of value2: {0}"</span><span class="p">,</span>
+                                  <span class="n">b</span><span class="p">.</span><span class="nf">GetType</span><span class="p">().</span><span class="nf">ToString</span><span class="p">());</span>
+
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>結果：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Get the actual type of value1: System.String
+Get the actual type of value2: System.Int32
+</code></pre></div></div>
+
+<p><img src="https://i.imgur.com/GdwesQY.png" alt="Imgur"></p>
+
+<ul>
+  <li>當 assign 一個 class object 的 type 使用 dynamic 的時候，compiler 並不會偵測這一個 dynamic object 有沒有正確的使用 method 或是 property。</li>
+</ul>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+
+	<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="kt">dynamic</span> <span class="n">s1</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Student</span><span class="p">();</span>
+
+		<span class="c1">// runtime error</span>
+		<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">s1</span><span class="p">.</span><span class="nf">DisplayStudentInfo</span><span class="p">());</span>
+
+	<span class="p">}</span>
+
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Student</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">DisplayStudentInfo</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Run-time exception (line 10): No overload for method 'DisplayStudentInfo' takes '0' arguments
+
+Stack Trace:
+
+[Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: No overload for method 'DisplayStudentInfo' takes '0' arguments]
+at CallSite.Target(Closure , CallSite , Object )
+at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+at Program.Main() :line 10
+</code></pre></div></div>
+
+<p><img src="https://i.imgur.com/myCsp1I.png" alt="Imgur"></p>
+
+<ul>
+  <li>可以將 dynamic object 當成參數傳入 method。</li>
+</ul>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="c1">// 2數相加</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Add</span><span class="p">(</span><span class="kt">dynamic</span> <span class="n">s1</span><span class="p">,</span> <span class="kt">dynamic</span> <span class="n">s2</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">s1</span> <span class="p">+</span> <span class="n">s2</span><span class="p">);</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>如果 method 或是 property 不相容，compiler 會在 runtime 有錯誤訊息。</li>
+  <li>在 Visual Studio 中不支持 Intellisense。</li>
+  <li>如果沒有額外做 dynamic type 的 checking，compiler 就不會丟錯誤。</li>
+</ul>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+
+	<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="c1">// compiler 不會有錯誤</span>
+		<span class="nf">Add</span><span class="p">(</span><span class="k">false</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="c1">// 2數相加</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Add</span><span class="p">(</span><span class="kt">dynamic</span> <span class="n">s1</span><span class="p">,</span> <span class="kt">dynamic</span> <span class="n">s2</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">s1</span> <span class="p">+</span> <span class="n">s2</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>但在執行的時候會有錯誤。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Run-time exception (line 14): Operator '+' cannot be applied to operands of type 'bool' and 'bool'
+
+Stack Trace:
+
+[Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: Operator '+' cannot be applied to operands of type 'bool' and 'bool']
+at CallSite.Target(Closure , CallSite , Object , Object )
+at System.Dynamic.UpdateDelegates.UpdateAndExecute2[T0,T1,TRet](CallSite site, T0 arg0, T1 arg1)
+at Program.addstr(Object s1, Object s2) :line 14
+at Program.Main() :line 8
+</code></pre></div></div>
+
+<p><img src="https://i.imgur.com/LH0rNbV.png" alt="Imgur"></p>
+
+<h2 id="參考資料">參考資料</h2>
+
+<p><a href="https://www.geeksforgeeks.org/dynamic-type-in-c-sharp/">Dynamic Type in C#</a></p>
+
+<p><a href="https://www.tutorialsteacher.com/csharp/csharp-dynamic-type">C# - Dynamic Types</a></p>
 
 
     </div>
 
 </article>
+<div class="post-nav">
+<a class="previous" href="/jekyll-theme-yat/snippets/2022/10/24/check-date-is-null-date.html" title="檢查 date 是否為 null  | c#">檢查 date 是否為 null | c#...</a><a class="next" href="/jekyll-theme-yat/blogging/2022/11/07/shrink-ssis-db-files.html" title="縮小 SSIS DB 檔案大小 | SSIS">縮小 SSIS DB 檔案大小 | SSIS...</a>
+</div>
+<div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        <li><a class="post-link" href="/jekyll-theme-yat/blogging/2022/09/04/string-immutable.html" title="縮小 SSIS DB 檔案大小 | SSIS">String values are immutable | JavaScript</a></li>
+<li><a class="post-link" href="/jekyll-theme-yat/snippets/2022/08/29/is-input-string-numeric.html" title="縮小 SSIS DB 檔案大小 | SSIS">確認 input string 是否為數字 | JavaScript</a></li>
+<li><a class="post-link" href="/jekyll-theme-yat/snippets/2022/08/24/two-array-comparisions.html" title="縮小 SSIS DB 檔案大小 | SSIS">2 陣列中找出至少有一個相同之元素 | JavaScript</a></li>
+<li><a class="post-link" href="/jekyll-theme-yat/snippets/2022/09/27/create-a-temp-table-with-openquery.html" title="縮小 SSIS DB 檔案大小 | SSIS">使用 OPENQUERY 新增 Temp Table | SQL</a></li>
+</ul>
+    </div>
 <div class="post-comments"></div></section>
 </div>
 
@@ -846,4 +998,3 @@ document.addEventListener('DOMContentLoaded', function(event) {
 </footer>
 </body>
 </html>
->>>>>>> origin/gh-pages
